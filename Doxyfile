@@ -1,0 +1,12 @@
+# Doxyfile configuration pour projet PDE Black-Scholes
+PROJECT_NAME           = "Black-Scholes PDE Solver"
+OUTPUT_DIRECTORY       = doc
+INPUT                  = include src
+RECURSIVE              = YES
+FILE_PATTERNS          = *.h *.cpp
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+GENERATE_LATEX         = YES
+GENERATE_HTML          = YES
+HAVE_DOT               = NO
+QUIET                  = YES
