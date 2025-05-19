@@ -151,7 +151,7 @@ void Window::plot_y2() {
 }
 
 /**
- * @brief Fonction affichant le cadre du graphique (cadre rectangulaire paramétré grâce au paramètre $\alpha \in \mathbb{R}^+$) 
+ * @brief Fonction affichant le cadre du graphique (cadre rectangulaire paramétré grâce au paramètre  \f$\alpha \in \mathbb{R}^+ \f$)
  */
 void Window::plot_frame() {
         // Paramétrage des points du rectangle

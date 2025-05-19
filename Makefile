@@ -34,8 +34,24 @@ $(BUILD_DIR):
 clean:
 	rm -rf $(BUILD_DIR)
 
+# Nettoyage des fichiers de documentation (Doxygen + LaTeX)
+doc-clean:
+	rm -rf doc
+	find . -type f -name "*.aux" -delete
+	find . -type f -name "*.log" -delete
+	find . -type f -name "*.toc" -delete
+	find . -type f -name "*.out" -delete
+	find . -type f -name "*.lof" -delete
+	find . -type f -name "*.lot" -delete
+	find . -type f -name "*.pdf" -delete
+	find . -type f -name "*.synctex.gz" -delete
+	find . -type f -name "*.bbl" -delete
+	find . -type f -name "*.blg" -delete
+	find . -type f -name "*_formulas.tex" -delete
+	find . -type f -name "*_formulas_dark.tex" -delete
+
 # Lancement du programme
 run: $(BIN)
 	./$(BIN)
 
-.PHONY: all clean run
+.PHONY: all clean run doc-clean

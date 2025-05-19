@@ -6,6 +6,7 @@
 /**
  * @brief Classe Option numérisant une option par ses paramètres numériques
  */
+
 class Option {
     public:
         Payoff* payoff;

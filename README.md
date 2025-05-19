@@ -63,5 +63,7 @@ doxygen Doxyfile
 Projet PAP - Simulation numérique pour options européennes
 
 
-##Pour générer le pdf :
+## Pour générer le pdf :
+sudo apt install texlive-full
+sudo apt install epstopdf
 pdflatex docs/IMFD_CN_Documentation.tex
