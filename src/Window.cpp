@@ -158,11 +158,11 @@ void Window::plot_frame() {
         //std::cout << "Affichage du cadre" << std::endl;
         const int n_points = 5;
         static SDL_Point points[n_points] = {
-            {alpha * window_width, alpha * window_height},
-            {alpha * window_width, (1 - alpha) * window_height},
-            {(1 - alpha) * window_width, (1 - alpha) * window_height},
-            {(1 - alpha) * window_width, alpha * window_height},
-            {alpha * window_width, alpha * window_height},
+                {static_cast<int>(alpha * window_width), static_cast<int>(alpha * window_height)},
+                {static_cast<int>(alpha * window_width), static_cast<int>((1 - alpha) * window_height)},
+                {static_cast<int>((1 - alpha) * window_width), static_cast<int>((1 - alpha) * window_height)},
+                {static_cast<int>((1 - alpha) * window_width), static_cast<int>(alpha * window_height)},
+                {static_cast<int>(alpha * window_width), static_cast<int>(alpha * window_height)},
         };
         // Réglage de la couleur des lignes
         SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -276,7 +276,12 @@ void Window::set_text(int x, int y, std::string text, int r, int g, int b, int s
  */
 void Window::print_label(Label l) {
         // Déclaration de la couleur et de la police
-        SDL_Color col = {l.r, l.g, l.b, 255};
+        SDL_Color col = {
+                static_cast<Uint8>(std::clamp(l.r, 0, 255)),
+                static_cast<Uint8>(std::clamp(l.g, 0, 255)),
+                static_cast<Uint8>(std::clamp(l.b, 0, 255)),
+                255
+        };
         TTF_Font* font = TTF_OpenFont(FONT_PATH, l.size);
 
         // Déclaration de la surface de texte
