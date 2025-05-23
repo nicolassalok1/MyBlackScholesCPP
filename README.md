@@ -67,3 +67,33 @@ Projet PAP - Simulation numérique pour options européennes
 sudo apt install texlive-full
 sudo apt install epstopdf
 pdflatex docs/IMFD_CN_Documentation.tex
+
+
+
+
+## Dans Doxyfile :
+
+PROJECT_NAME           = "MyBlackScholesCPP"
+OUTPUT_DIRECTORY       = docs
+INPUT                  = include src
+FILE_PATTERNS          = *.h *.cpp
+RECURSIVE              = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+HTML_EXTRA_STYLESHEET = path/to/doxygen-awesome-css/doxygen-awesome.css
+
+
+
+## Puis :
+
+git clone https://github.com/jothepro/doxygen-awesome-css.git
+cp doxygen-awesome-css/doxygen-awesome.css .
+
+doxygen Doxyfile
+
+explorer.exe docs\\html\\index.html  
+

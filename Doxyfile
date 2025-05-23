@@ -1,12 +1,13 @@
 # Doxyfile configuration pour projet PDE Black-Scholes
-PROJECT_NAME           = "Black-Scholes PDE Solver"
-OUTPUT_DIRECTORY       = doc
+PROJECT_NAME           = "MyBlackScholesCPP"
+OUTPUT_DIRECTORY       = docs
 INPUT                  = include src
-RECURSIVE              = YES
 FILE_PATTERNS          = *.h *.cpp
-EXTRACT_ALL            = YES
-EXTRACT_PRIVATE        = YES
-GENERATE_LATEX         = YES
+RECURSIVE              = YES
 GENERATE_HTML          = YES
-HAVE_DOT               = NO
-QUIET                  = YES
+GENERATE_LATEX         = NO
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+HTML_EXTRA_STYLESHEET = path/to/doxygen-awesome-css/doxygen-awesome.css
