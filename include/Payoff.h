@@ -1,52 +1,61 @@
 #ifndef _H_PAYOFF
 #define _H_PAYOFF
 
-#include <algorithm>  // Pour std::max
+#include <algorithm>   // Pour la fonction max
 
-// Identifiants pour les types de payoff
 #define PAYOFF_TYPE_CALL 0
-#define PAYOFF_TYPE_PUT  1
+#define PAYOFF_TYPE_PUT 1
+
+/*
+    L'ajout des payoff type permettent dans la class PDE d'implémenter les conditions aux bords et terminale sans avoir à transférer à chaque fois le type de payoff simulé.
+    Gain de temps, d'espace et de portabilité
+*/
 
 /**
- * @brief Classe abstraite représentant un payoff
+ * @brief Classe abstraite de Payoff
  */
 class Payoff {
-public:
-    virtual ~Payoff() = default;
+    public:   // c-tor et d-tor
+        virtual int get_payoff_type() const = 0;
 
-    // Retourne l'identifiant du type de payoff (CALL/PUT)
-    virtual int get_payoff_type() const = 0;
-
-    // Évalue le payoff au niveau d'un sous-jacent donné
-    virtual double operator()(const double& S) const = 0;
+    public:
+        // Surcharge de l'opérateur ()
+        virtual double operator()(const double &S) const = 0;
 };
 
 /**
- * @brief Classe représentant un payoff de type Call européen
+ * @brief Classe implémentant le payoff Call.
+ * Hérite de la classe abstraite Payoff
+ * 
  */
 class Call : public Payoff {
-private:
-    double K;         // Strike
-    int payoff_type;
+    private:
+        double K;   // Strike
+        int payoff_type;
 
-public:
-    explicit Call(const double& K_) : K(K_), payoff_type(PAYOFF_TYPE_CALL) {}
-    int get_payoff_type() const override { return payoff_type; }
-    double operator()(const double& S) const override;
+    public:   // c-tor et d-tor
+        Call(const double &K_) : K(K_) { payoff_type = PAYOFF_TYPE_CALL; };
+        int get_payoff_type() const { return payoff_type; }
+
+    public:   // fonction de payoff
+        virtual double operator()(const double &S) const;
 };
 
 /**
- * @brief Classe représentant un payoff de type Put européen
+ * @brief Classe implémentant le payoff Put
+ * Hérite de la classe abstraire Payoff
  */
 class Put : public Payoff {
-private:
-    double K;         // Strike
-    int payoff_type;
+    private:
+        double K;   // Strike
+        int payoff_type;
 
-public:
-    explicit Put(const double& K_) : K(K_), payoff_type(PAYOFF_TYPE_PUT) {}
-    int get_payoff_type() const override { return payoff_type; }
-    double operator()(const double& S) const override;
+    public:
+        Put(const double &K_) : K(K_) { payoff_type = PAYOFF_TYPE_PUT; };
+        int get_payoff_type() const { return payoff_type; }
+
+    public:
+        virtual double operator()(const double &S) const;
 };
 
 #endif
