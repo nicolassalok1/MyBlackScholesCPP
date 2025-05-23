@@ -5,28 +5,44 @@
 #include <vector>
 
 /**
- * @brief Classe Mesh permettant de créer une discrétisation d'un domaine spatial ou temporel
+ * @brief Classe représentant un maillage uniforme sur un intervalle [0, a]
  */
 class Mesh {
-    private:
-        double* data;   // Tableau contenant la discrétisation temporelle
-        double a;       // Largeur de l'intervalle
-        int size;       // Nombre de subdivisions
-    public:
-        Mesh(double a_, int size_);
-        ~Mesh();
+private:
+    std::vector<double> data;  ///< Valeurs discrètes
+    double a;                  ///< Longueur de l'intervalle
+    int size;                  ///< Nombre de subdivisions (points - 1)
 
-    public:
-        double get_interval() const { return a; }
-        int get_size() const { return size; }
-        double get_step() const { return (double)(a / size); }
-        std::vector<double> get_vector();
+public:
+    /**
+     * @brief Construit un maillage uniforme
+     * @param a_ Longueur de l'intervalle
+     * @param size_ Nombre de subdivisions (M ⇒ M+1 points)
+     */
+    Mesh(double a_, int size_);
 
-    public:
-        double operator[](int i) const;
+    double get_interval() const { return a; }
+    int get_size() const { return size; }
 
-    public:
-        friend std::ostream& operator<<(std::ostream& st, const Mesh& m);
+    /**
+     * @brief Retourne le pas de discrétisation h = a / size
+     */
+    double get_step() const { return a / size; }
+
+    /**
+     * @brief Retourne toutes les valeurs sous forme de std::vector
+     */
+    std::vector<double> get_vector() const { return data; }
+
+    /**
+     * @brief Accès direct aux points via operator[]
+     */
+    double operator[](int i) const;
+
+    /**
+     * @brief Affichage du maillage
+     */
+    friend std::ostream& operator<<(std::ostream& os, const Mesh& m);
 };
 
 #endif
