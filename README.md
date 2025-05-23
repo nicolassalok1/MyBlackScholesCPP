@@ -3,6 +3,12 @@
 INSTALLER WSL ET LANCER TOUTES CES COMMANDES DEPUIS UBUNTU DANS LE TERMINAL CLION
 
 
+sudo apt install g++ libsdl2-dev libsdl2-ttf-dev doxygen texlive-full
+sudo apt install texlive-full
+sudo apt install epstopdf
+pdflatex docs/IMFD_CN_Documentation.tex
+
+make run     # Exécution
 
 Ce projet implémente la résolution numérique de l'équation de Black-Scholes pour options européennes via deux méthodes de différences finies :
 
